@@ -73,7 +73,7 @@ module ActsAsApi
         api_response = api_response.collect{|f| { api_root_name.singularize => f } }
       end
 
-      if meta_hash or ActsAsApi::Config.add_root_node_for.include? api_format
+      if meta_hash or (!api_response.is_a?(Array) && (ActsAsApi::Config.add_root_node_for.include? api_format))
         api_response = { api_root_name.to_sym =>  api_response}
       end
 
